@@ -4,7 +4,7 @@ let trainingDone=false;
 let userInputLabel;
 let amountOfTestData = 15;
 let trainingDataAmount = 40000;
-let predictionOutput;
+let predictionOutputIndex;
 
 let outputUnits = 36;
 
@@ -109,12 +109,12 @@ function manualTesting(){
 
     let mirroredGrid = mirro2DArray(rotatedGrid);
 
-    predictionOutput = tf.tidy(() => {
+    predictionOutputIndex = tf.tidy(() => {
     let input = tf.tensor(mirroredGrid);
 
     input = input.reshape([1, 784]);
   
-    return model.predict(input);
+    return model.predict(input).argMax(1).dataSync()[0];
     })
 }
 
