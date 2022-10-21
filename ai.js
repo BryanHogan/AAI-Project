@@ -30,8 +30,11 @@ function setup()
 
 function draw(){
   manualTesting();
-  // Printing the number of tensors allocated at this time
-  if (trainingDone )console.log('numTensors: ' + tf.memory().numTensors);
+  console.log(tf.memory().numBytesInGPU);
+  if (tf.memory().numBytesInGPU > 138000000)
+      window.location.reload(false);
+
+
 }
 
 function training()
